@@ -4,19 +4,9 @@ var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser');
 
-// var MongoClient = require('mongodb').MongoClient,format = require('util').format;
-
-
-// var url = 'mongodb://localhost:27017';
-// MongoClient.connect(url, function(err, db) {
-//     if(err){throw err;}
-//     else{console.log("Connected correctly to server.");}    
-//     db.close();
-// });
-
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017.Tododb');
+mongoose.connect('mongodb://localhost:27017.Tododb');  //put your mongo url here
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
