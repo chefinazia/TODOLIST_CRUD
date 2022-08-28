@@ -9,14 +9,14 @@ var MongoClient = require('mongodb').MongoClient;
 let toDoListRoutes = require('./routes/toDoListRoutes')
 mongoose.Promise = global.Promise;
 
-var url = 'mongodb+srv://Rachit:Rachit@cluster0.j3r0rb7.mongodb.net/?retryWrites=true&w=majority';
+var url ="{{URL}}" //add your url here
 
-
-MongoClient.connect(url, function(err, db) {
-    if(err){throw err;}
-    else{console.log("Connected correctly to server.");}    
-    db.close();
-  });
+const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("Tododb").collection("Tasks");
+  // perform actions on the collection object
+  client.close();
+});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
