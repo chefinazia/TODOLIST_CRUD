@@ -4,18 +4,17 @@ var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser');
 
-
+let toDoListRoutes = require('./routes/toDoListRoutes')
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017.Tododb');  //put your mongo url here
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-
+app.use("/todolist",toDoListRoutes)
 app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
   });
-
 
 app.listen(port);
 
