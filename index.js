@@ -2,11 +2,21 @@ var express = require('express'),
     app = express(),
     port = process.env.PORT || 3000,
     mongoose = require('mongoose'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    Task = require('./models/todoListModel');
+var MongoClient = require('mongodb').MongoClient;
 
 let toDoListRoutes = require('./routes/toDoListRoutes')
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017.Tododb');  //put your mongo url here
+
+var url = 'mongodb+srv://Rachit:Rachit@cluster0.j3r0rb7.mongodb.net/?retryWrites=true&w=majority';
+
+
+MongoClient.connect(url, function(err, db) {
+    if(err){throw err;}
+    else{console.log("Connected correctly to server.");}    
+    db.close();
+  });
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
